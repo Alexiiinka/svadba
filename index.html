@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Alexinka a Ondrix svadba</title>
+
+  <link rel="stylesheet" href="styl.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>💍 Naša svadba</h1>
+    <p>Zadajte svoj pozývací kód</p>
+
+    <input
+      type="text"
+      id="code"
+      placeholder="Napr. ROSE24"
+    />
+
+    <button onclick="unlockInvite()">
+      Otvoriť pozvánku
+    </button>
+
+    <p id="error"></p>
+
+    <div id="wedding-content" style="display:none;">
+
+      <h2 id="welcome"></h2>
+
+      <p>Tešíme sa na vás ❤️</p>
+
+      <h3>Dôležité informácie</h3>
+
+      <p>Dátum: 15. august 2026</p>
+      <p>Miesto: Chateau XYZ</p>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+<!-- trigger deployment -->
+</html>

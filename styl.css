@@ -1,0 +1,33 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #faf7f2;
+  margin: 0;
+  padding: 40px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 15px;
+  padding: 14px 20px;
+  cursor: pointer;
+}
+
+#error {
+  color: red;
+}
