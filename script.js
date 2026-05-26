@@ -35,13 +35,20 @@ async function unlockInvite() {
     document.getElementById("error")
       .innerText =
       "Nesprávny kód";
-
     return;
   }
+  else {document.getElementById("error").style.display = "none";}
 
-  document.getElementById("welcome")
-    .innerText =
-    `Vitaj ${data.guest_name} ❤️`;
+  const meno = data.guest_name;
+
+  if (meno.includes(" ")) {
+    document.getElementById("welcome").innerText = `✨ Vitajte ${data.guest_name} ✨`;
+    document.getElementById("privitanie").innerText = `Tešíme sa na vás ❤️ Hlavne doneste dobrú náladu a roztočíme to!`;
+  } else {
+    document.getElementById("welcome").innerText = `✨ Vitaj ${data.guest_name} ✨`;
+    document.getElementById("privitanie").innerText = `Tešíme sa na teba ❤️ Hlavne dones dobrú náladu a roztočíme to!`;
+  }
+
 
   document.getElementById(
     "wedding-content"

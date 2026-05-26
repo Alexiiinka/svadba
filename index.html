@@ -5,23 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Alexinka a Ondrix svadba</title>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet">  
   <link rel="stylesheet" href="styl.css">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 
 <body>
+  <div class="container">
+    <h1>Naša svadba</h1>
+    <h2>Alexandra 💞 Ondřej</h2>
+  </div>
 
   <div class="container">
-
-    <h1>💍 Naša svadba</h1>
-    <p>Zadajte svoj pozývací kód</p>
+    <p>Zadaj pozývací kód a otvor detaily k pozvánke</p>
 
     <input
       type="text"
       id="code"
-      placeholder="Napr. ROSE24"
+      placeholder="Napr. Ahoj24"
     />
 
     <button onclick="unlockInvite()">
@@ -29,19 +33,20 @@
     </button>
 
     <p id="error"></p>
+  </div>
 
-    <div id="wedding-content" style="display:none;">
+  <div class = container id="wedding-content" style="display:none;">
 
-      <h2 id="welcome"></h2>
+    <h2 id="welcome"></h2>
 
-      <p>Tešíme sa na vás ❤️</p>
+    <p id="privitanie"></p>
 
-      <h3>Dôležité informácie</h3>
+    <h3>Dôležité informácie</h3>
 
-      <p>Dátum: 15. august 2026</p>
-      <p>Miesto: Chateau XYZ</p>
-
-    </div>
+    <p class="charm-text">Dátum: 29. august 2026</p>
+    <p class="charm-text">Čas: 14:30</p>
+    <p class="charm-text">Miesto: Kostel Sv. Petra a Pavla, Nová Říše 588 65 </p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d846.2511987218644!2d15.56426148089133!3d49.139197450796175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470d3b5b3cc31965%3A0x729d5684e2b81528!2sKostel%20sv.%20Petra%20a%20Pavla!5e0!3m2!1ssk!2scz!4v1779811369617!5m2!1ssk!2scz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
   </div>
 

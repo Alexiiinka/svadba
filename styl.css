@@ -1,13 +1,18 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #faf7f2;
+  font-family: "Cinzel", serif;
+  font-size: clamp(1rem, 2vw, 2rem);
+  background: #fff4df;
   margin: 0;
   padding: 40px;
 }
 
+/* Pred tym bola farba viac bieloseda f8f7f2 */
+
 .container {
-  max-width: 600px;
+  width: 80%;
+  max-width: 1000px;
   margin: auto;
+  margin-top: 20px;
   background: white;
   padding: 40px;
   border-radius: 20px;
@@ -16,18 +21,77 @@ body {
 }
 
 input {
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  box-sizing: border-box;
+  width: 80%;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto;
+
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-width: 0.5px;
+  border-color: #665d3d;
 }
 
 button {
+  font-family: "cinzel", serif;
+  font-size: clamp(1rem, 1vw, 2.5rem);
   margin-top: 15px;
   padding: 14px 20px;
   cursor: pointer;
+  background: #f8f7f2;
+  border: 0.2px solid #c0bdb2;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+button:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 #error {
   color: red;
+}
+
+h1 {
+  font-family:
+    "charm", light,
+    serif;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  text-shadow: 2px 2px 5px #383221;
+  color: #d1c4ae;
+}
+
+h2 {
+  font-family: "cormorant garamond", serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: #3d3722;
+}
+
+h3 {
+  border-top: 5px solid #99ab85;
+  padding-top: 15px;
+}
+
+p.charm-text {
+  font-family: "charm", light, serif;
+  font-size: clamp(0.5rem, 2vw, 2rem);
+  color: #665d3d;
+}
+
+h2#welcome {
+  background-color: #fff4df;
+  color: #514d40;
+  width: 90%;
+  margin: 15px auto;
+  border-radius: 10px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
