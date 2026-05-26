@@ -4,23 +4,31 @@ const supabaseUrl =
 const supabaseKey =
   "sb_publishable_XQh_yAiZ6mesJKhjNSVqqQ_zUdegZTw";
 
-const supabase =
-  window.supabase.createClient(
-    supabaseUrl,
-    supabaseKey
-  );
+const client = supabase.createClient(
+  supabaseUrl,
+  supabaseKey
+);
+
+console.log("script loaded");
 
 async function unlockInvite() {
 
+  console.log("button clicked");
+
   const code =
-    document.getElementById("code").value.trim();
+    document.getElementById("code")
+    .value
+    .trim();
 
   const { data, error } =
-    await supabase
+    await client
       .from("Hostia")
       .select("*")
       .eq("invite_code", code)
       .single();
+
+  console.log(data);
+  console.log(error);
 
   if (error || !data) {
 
@@ -39,7 +47,7 @@ async function unlockInvite() {
     "wedding-content"
   ).style.display = "block";
 
-  await supabase
+  await client
     .from("Hostia")
     .update({
       opened: true,
