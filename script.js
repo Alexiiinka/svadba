@@ -22,7 +22,7 @@ async function unlockInvite() {
 
   const { data, error } =
     await client
-      .from("Hostia")
+      .from("hostia")
       .select("*")
       .eq("invite_code", code)
       .single();
@@ -48,7 +48,7 @@ async function unlockInvite() {
   ).style.display = "block";
 
   await client
-    .from("Hostia")
+    .from("hostia")
     .update({
       opened: true,
       opened_at: new Date()
