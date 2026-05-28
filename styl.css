@@ -15,7 +15,18 @@ body {
   margin-top: 20px;
   background: white;
   padding: 40px;
-  border-radius: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.important-info {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 3%;
+  padding: 20px;
+  border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
 }
@@ -27,7 +38,7 @@ input {
   margin: 0 auto;
 
   padding: 12px 16px;
-  border-radius: 8px;
+  border-radius: 10px;
   border-width: 0.5px;
   border-color: #665d3d;
 }
@@ -61,9 +72,7 @@ button:active {
 }
 
 h1 {
-  font-family:
-    "charm", light,
-    serif;
+  font-family: "charm", light, serif;
   font-size: clamp(2.5rem, 8vw, 6rem);
   text-shadow: 2px 2px 5px #383221;
   color: #d1c4ae;
@@ -75,23 +84,50 @@ h2 {
   color: #3d3722;
 }
 
+h2#welcome {
+  background-color: #fff4df74;
+  color: #514d40;
+  width: 100%;
+  margin: 15px auto;
+  width: calc(100% + 80px);
+  margin-left: -40px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+
+}
+
 h3 {
-  border-top: 5px solid #99ab85;
+  /*border-top: 5px solid #99ab85;*/
   padding-top: 15px;
+}
+
+h4 {
+  text-align: left;
+  font-family: "cormorant garamond", serif;
+  font-weight: 2600;
+  width: fit-content;
+  letter-spacing: 0.06em;
+  color: #99ab85;
+  border-bottom: 1px solid #99ab85;
+  text-shadow: 1px 1px 2px #99ab85;
+  margin-bottom: 2%;
 }
 
 p.charm-text {
   font-family: "charm", light, serif;
-  font-size: clamp(0.5rem, 2vw, 2rem);
+  text-align: left;
   color: #665d3d;
 }
 
-h2#welcome {
-  background-color: #fff4df;
-  color: #514d40;
-  width: 90%;
-  margin: 15px auto;
+
+
+.map {
+  width: 100%;
+  height: clamp(250px, 40vw, 450px);
+
+  border: 0;
   border-radius: 10px;
-  padding-left: 5%;
-  padding-right: 5%;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.08);
 }

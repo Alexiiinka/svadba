@@ -13,6 +13,7 @@ console.log("script loaded");
 
 async function unlockInvite() {
 
+  let mena = [];
   console.log("button clicked");
 
   const code =
@@ -26,18 +27,41 @@ async function unlockInvite() {
       .select("*")
       .eq("invite_code", code)
       .single();
+  
+  if (data && data.apartm_num != null) {
+    const person = data;
+
+    const apartmNum =
+      person.apartm_num;
+
+    const {data: roommates} =
+     await client
+      .from("hostia")
+      .select("guest_name")
+      .eq(
+        "apartm_num",
+        apartmNum
+      );
+
+    mena = roommates.map(
+        person =>
+        person.guest_name
+    );
+  }
 
   console.log(data);
   console.log(error);
 
   if (error || !data) {
-
     document.getElementById("error")
       .innerText =
       "Nesprávny kód";
     return;
   }
-  else {document.getElementById("error").style.display = "none";}
+  else {
+    document.getElementById("error").style.display = "none";
+    document.getElementById("invite-form").style.display = "none";
+  }
 
   const meno = data.guest_name;
 
@@ -49,10 +73,16 @@ async function unlockInvite() {
     document.getElementById("privitanie").innerText = `Tešíme sa na teba ❤️ Hlavne dones dobrú náladu a roztočíme to!`;
   }
 
+  document.getElementById("wedding-content").style.display = "block";
 
-  document.getElementById(
-    "wedding-content"
-  ).style.display = "block";
+  document.getElementById("dateOfWedding").innerText = `Dátum: 29. august 2026`;
+
+  if (data.apartm_num != null) {
+    document.getElementById("ubytko").style.display = "block";
+    if (data.seats === 1) {
+      document.getElementById("MaUbytovanie").innerText = `Maš nachystané ubytovanie v Ranči Telč, apartmán číslo ${data.apartm_num}. Toto ubytovanie ubytováva: ${mena.join(", ")}`;
+    }
+  }
 
   await client
     .from("hostia")
