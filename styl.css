@@ -46,7 +46,7 @@ input {
 button {
   font-family: "cinzel", serif;
   font-size: clamp(1rem, 1vw, 2.5rem);
-  margin-top: 15px;
+  margin-top: 10px;
   padding: 14px 20px;
   cursor: pointer;
   background: #f8f7f2;
@@ -132,6 +132,10 @@ li::before {
   content: "🌿 ";
 }
 
+li.vnurenyZoznamItem::before {
+  content: "➔ ";
+}
+
 label {
   display: flex;
   margin-top: 20px;
@@ -143,8 +147,12 @@ label {
   width: fit-content;
 }
 
-li.vnurenyZoznamItem::before {
-  content: "➔ ";
+#mainTitle {
+  width: min(90%, 700px);
+  height: auto;
+
+  display: block;
+  margin: 0 auto 20px auto;
 }
 
 p.charm-text {
@@ -154,6 +162,14 @@ p.charm-text {
 }
 
 
+
+
+#maRanajky{
+  background-color: #fff4df74;
+  padding: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
 
 .map {
   width: 100%;

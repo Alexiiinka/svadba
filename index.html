@@ -15,6 +15,7 @@
 
 <body>
   <div class="container">
+    <img id="mainTitle" src="images/nadpis.png" alt="Alexandra & Ondřej"/>
     <h1>Naša svadba</h1>
     <h2>Alexandra 💞 Ondřej</h2>
   </div>
@@ -86,34 +87,45 @@
           </ul>
         </li>
       </ul>
-      <div>
-        <p> Raňajky sobota </p>
-        <label>
-          Objednať pre počet osôb:
-          <input
-            type="number"
-            id="satCount"
-            min="0"
-            value="0"
-          >
-        </label>
+
+      <div id ="maRanajky" style="display:none;">
+        <p id="objednaneRanajky"></p>
+        <button onclick="updateBreakfast()">
+          Zmeniť raňajky
+        </button>
       </div>
-      <div>
-        <p> Raňajky nedeľa </p>
-        <label>
-          Objednať pre počet osôb:
-          <input
-            type="number"
-            id="sunCount"
-            min="0"
-            value="0"
-          >
-        </label>
+
+      <div id="ranajkyForm">
+        <div>
+          <p> Raňajky sobota </p>
+          <label>
+            Objednať pre počet osôb:
+            <input
+              type="number"
+              id="satCount"
+              min="0"
+              value="0"
+            >
+          </label>
+        </div>
+        <div>
+          <p> Raňajky nedeľa </p>
+          <label>
+            Objednať pre počet osôb:
+            <input
+              type="number"
+              id="sunCount"
+              min="0"
+              value="0"
+            >
+          </label>
+        </div>
+        <br>
+        <button onclick="saveBreakfast()">
+          Ulož
+        </button>
       </div>
-      <br>
-      <button onclick="saveBreakfast()">
-        Ulož
-      </button>
+      
     
     </div>
 

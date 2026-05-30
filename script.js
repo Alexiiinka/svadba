@@ -95,8 +95,8 @@ async function unlockInvite() {
   }
 
   let masCiMate = [];
-  if (data.seats === 1) {masCiMate[0] = "Máš"; masCiMate[1] = "Teba"; masCiMate[2] = "si"; masCiMate[3] = "neváhaj"; masCiMate[4] = "vyplň"; masCiMate[5] = "máš"; }
-  else {masCiMate[0] = "Máte"; masCiMate[1] = "Vás"; masCiMate[2] = "ste"; masCiMate[3] = "neváhejte"; masCiMate[4] = "vyplňte"; masCiMate[5] = "máte"; }
+  if (data.seats === 1) {masCiMate[0] = "Máš"; masCiMate[1] = "Teba"; masCiMate[2] = "si"; masCiMate[3] = "neváhaj"; masCiMate[4] = "vyplň"; masCiMate[5] = "máš"; masCiMate[6] = "chceš"; }
+  else {masCiMate[0] = "Máte"; masCiMate[1] = "Vás"; masCiMate[2] = "ste"; masCiMate[3] = "neváhejte"; masCiMate[4] = "vyplňte"; masCiMate[5] = "máte"; masCiMate[6] = "chcete"; }
 
   if (data.apartm_num != null) {
     document.getElementById("ubytko").style.display = "block";
@@ -116,7 +116,7 @@ async function unlockInvite() {
     </strong>
     <br><br>
     Snažili sme sa vybrať ubytovanie pre ${masCiMate[1]} čo najpohodlnejšie, ale ak by boli nejaké otázky, ${masCiMate[3]} sa na nás obrátiť!`;
-    document.getElementById("raňajkyInfo").innerHTML = `pokiaľ ${masCiMate[5]} záujem, ${masCiMate[4]} políčka nižšie najneskôr do <strong>30. 7. 2026</strong>! A klik na <strong>ULOŽ</strong>`;
+    document.getElementById("raňajkyInfo").innerHTML = `pokiaľ ${masCiMate[5]} záujem, ${masCiMate[4]} políčka nižšie najneskôr do <strong>31. 7. 2026</strong>! A klik na <strong>ULOŽ</strong>. Po tomto termíne sa už nebude ukladať objednávka.`;
     document.getElementById("VzhladUbytovania").innerHTML = `Ubytovanie je zaplatené a dá sa pozrieť tu: <a href="https://www.ranctelc.cz/${ubytovanieType}/" target="_blank">ranctelc</a>`;
   }
 
@@ -128,10 +128,30 @@ async function unlockInvite() {
     })
     .eq("id", data.id);
     currentGuestId = data.id;
+
+    if ((data.breakfast_sat_count + data.breakfast_sun_count) > 0) {
+      document.getElementById("maRanajky").style.display = "block";
+      document.getElementById("objednaneRanajky").innerHTML = `Raňajky sú objednané: ${data.breakfast_sat_count} ks sobota a ${data.breakfast_sun_count} ks nedeľa. Ak ${masCiMate[6]} zmeniť voľbu, klik na tlačítko nižšie. Zmeniť sa dá do <strong>31. 7. 2026</strong>. Po tomto termíne sa už zmena neuloží.`;
+      document.getElementById("ranajkyForm").style.display = "none";
+    }
 }
 
+function updateBreakfast() {
+  if (new Date() > new Date("2026-07-31")) {
+    alert("Už není možné meniť objednávku raňajok.");
+  }
+  else {
+    document.getElementById("ranajkyForm").style.display = "block";
+  }
+}
+
+
 async function saveBreakfast() {
-  const satCount =parseInt(document.getElementById("satCount").value);
+  if (new Date() > new Date("2026-07-31")) {
+    alert("Už není možné objednať raňajky.");
+    return;
+  }
+  const satCount = parseInt(document.getElementById("satCount").value);
   const sunCount = parseInt(document.getElementById("sunCount").value);
   
   const { error } =
