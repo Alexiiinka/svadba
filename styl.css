@@ -113,6 +113,40 @@ h4 {
   margin-bottom: 2%;
 }
 
+ul {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+}
+
+ul.vnurenyZoznam {
+  padding-left: 5%;
+  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+}
+
+li {
+  margin-top: 10px;
+}
+
+li::before {
+  content: "🌿 ";
+}
+
+label {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  font-size: clamp(0.8rem, 1.8vw, 1.8rem);
+  color: #665d3d;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+li.vnurenyZoznamItem::before {
+  content: "➔ ";
+}
+
 p.charm-text {
   font-family: "charm", light, serif;
   text-align: left;
@@ -130,4 +164,27 @@ p.charm-text {
 
   box-shadow:
     0 8px 24px rgba(0,0,0,0.08);
+}
+
+@media (max-width: 768px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .important-info {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  h2#welcome {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+  }
 }

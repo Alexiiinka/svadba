@@ -10,6 +10,7 @@ const client = supabase.createClient(
 );
 
 console.log("script loaded");
+let currentGuestId = null;
 
 async function unlockInvite() {
 
@@ -77,11 +78,46 @@ async function unlockInvite() {
 
   document.getElementById("dateOfWedding").innerText = `Dátum: 29. august 2026`;
 
+  let chatkaCiApt = "";
+  if (data.apartm_num > 9) {chatkaCiApt = "Chatka"; }
+  else {chatkaCiApt = "Apartmán"; }
+
+  let ubytovanieType = "";
+  switch (true) {
+    case data.apartm_num < 5:
+      ubytovanieType = "apartman";
+      break;
+    case data.apartm_num < 10:
+      ubytovanieType = "bezbarierove-ubytovani";
+      break;
+    default:
+      ubytovanieType = "chatky";
+  }
+
+  let masCiMate = [];
+  if (data.seats === 1) {masCiMate[0] = "Máš"; masCiMate[1] = "Teba"; masCiMate[2] = "si"; masCiMate[3] = "neváhaj"; masCiMate[4] = "vyplň"; masCiMate[5] = "máš"; }
+  else {masCiMate[0] = "Máte"; masCiMate[1] = "Vás"; masCiMate[2] = "ste"; masCiMate[3] = "neváhejte"; masCiMate[4] = "vyplňte"; masCiMate[5] = "máte"; }
+
   if (data.apartm_num != null) {
     document.getElementById("ubytko").style.display = "block";
-    if (data.seats === 1) {
-      document.getElementById("MaUbytovanie").innerText = `Maš nachystané ubytovanie v Ranči Telč, apartmán číslo ${data.apartm_num}. Toto ubytovanie ubytováva: ${mena.join(", ")}`;
-    }
+    document.getElementById("MaUbytovanie").innerHTML =
+    `🐎 <strong>
+      ${masCiMate[0]} nachystané ubytovanie v Ranči Telč
+    </strong>
+    <br><br>
+    🏡 ${chatkaCiApt} číslo:
+    <strong>
+      ${data.apartm_num}
+    </strong>
+    <br><br>
+    👥 ${chatkaCiApt} ubytováva:
+    <strong>
+      ${mena.join(", ")}
+    </strong>
+    <br><br>
+    Snažili sme sa vybrať ubytovanie pre ${masCiMate[1]} čo najpohodlnejšie, ale ak by boli nejaké otázky, ${masCiMate[3]} sa na nás obrátiť!`;
+    document.getElementById("raňajkyInfo").innerHTML = `pokiaľ ${masCiMate[5]} záujem, ${masCiMate[4]} políčka nižšie najneskôr do <strong>30. 7. 2026</strong>! A klik na <strong>ULOŽ</strong>`;
+    document.getElementById("VzhladUbytovania").innerHTML = `Ubytovanie je zaplatené a dá sa pozrieť tu: <a href="https://www.ranctelc.cz/${ubytovanieType}/" target="_blank">ranctelc</a>`;
   }
 
   await client
@@ -91,4 +127,20 @@ async function unlockInvite() {
       opened_at: new Date()
     })
     .eq("id", data.id);
+    currentGuestId = data.id;
+}
+
+async function saveBreakfast() {
+  const satCount =parseInt(document.getElementById("satCount").value);
+  const sunCount = parseInt(document.getElementById("sunCount").value);
+  
+  const { error } =
+    await client
+      .from("hostia")
+      .update({breakfast_sat_count: satCount, breakfast_sun_count: sunCount})
+      .eq("id",currentGuestId);
+
+  if (!error) {
+    alert("🥐 Raňajky uložené");
+  }
 }

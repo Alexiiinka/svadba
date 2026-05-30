@@ -57,8 +57,64 @@
     </div>
 
     <div class="important-info" id="ubytko" style="display:none;" >
-      <h3>🥳 GRATULUJEME! 🥳</h3>
+      <h3>🥳 SKVELÁ SPRÁVA 🥳</h3>
       <p id="MaUbytovanie"></p>
+      <br>
+      <h4>Podrobnejšie informácie</h4>
+      <ul>
+        <li>
+          Ubytovanie je k dispozícii od piatka 12:00 do nedele 10:30
+          <ul class="vnurenyZoznam">
+            <li class="vnurenyZoznamItem">
+              odporúčame príchod v piatok, pre užitie celého víkendu bez stresu zo sobotného cestovania. Nižšie sú naše tipy na jednoduché výlety v krásnom UNESCO mestečku Telč.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Check-in prebieha na recepcii Ranča Telč
+        </li>
+        <li id="VzhladUbytovania">
+        </li>
+        <li>
+          Je tu možnosť objednania <strong>raňajok</strong> za XXX kč/osobu (resp. XXX eur/osobu) 
+          <ul class="vnurenyZoznam">
+            <li class="vnurenyZoznamItem">
+              raňajky sa podávajú formou bufetu v sobotu a nedeľu od 8:00 do 10:00
+            </li>
+            <li class="vnurenyZoznamItem" id ="raňajkyInfo">
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div>
+        <p> Raňajky sobota </p>
+        <label>
+          Objednať pre počet osôb:
+          <input
+            type="number"
+            id="satCount"
+            min="0"
+            value="0"
+          >
+        </label>
+      </div>
+      <div>
+        <p> Raňajky nedeľa </p>
+        <label>
+          Objednať pre počet osôb:
+          <input
+            type="number"
+            id="sunCount"
+            min="0"
+            value="0"
+          >
+        </label>
+      </div>
+      <br>
+      <button onclick="saveBreakfast()">
+        Ulož
+      </button>
+    
     </div>
 
 
