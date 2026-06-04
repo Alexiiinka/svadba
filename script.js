@@ -95,8 +95,8 @@ async function unlockInvite() {
   }
 
   let masCiMate = [];
-  if (data.seats === 1) {masCiMate[0] = "Máš"; masCiMate[1] = "Teba"; masCiMate[2] = "si"; masCiMate[3] = "neváhaj"; masCiMate[4] = "vyplň"; masCiMate[5] = "máš"; masCiMate[6] = "chceš"; }
-  else {masCiMate[0] = "Máte"; masCiMate[1] = "Vás"; masCiMate[2] = "ste"; masCiMate[3] = "neváhejte"; masCiMate[4] = "vyplňte"; masCiMate[5] = "máte"; masCiMate[6] = "chcete"; }
+  if (data.seats === 1) {masCiMate[0] = "Máš"; masCiMate[1] = "Teba"; masCiMate[2] = "si"; masCiMate[3] = "neváhaj"; masCiMate[4] = "vyplň"; masCiMate[5] = "máš"; masCiMate[6] = "chceš"; masCiMate[7] = "napíš"; masCiMate[8] = "zaplať"; masCiMate[9] = "prines"; masCiMate[10] = "daj"; }
+  else {masCiMate[0] = "Máte"; masCiMate[1] = "Vás"; masCiMate[2] = "ste"; masCiMate[3] = "neváhejte"; masCiMate[4] = "vyplňte"; masCiMate[5] = "máte"; masCiMate[6] = "chcete"; masCiMate[7] = "napíšte"; masCiMate[8] = "zaplaťte"; masCiMate[9] = "prineste"; masCiMate[10] = "dajte"; }
 
   if (data.apartm_num != null) {
     document.getElementById("ubytko").style.display = "block";
@@ -115,10 +115,20 @@ async function unlockInvite() {
       ${mena.join(", ")}
     </strong>
     <br><br>
-    Snažili sme sa vybrať ubytovanie pre ${masCiMate[1]} čo najpohodlnejšie, ale ak by boli nejaké otázky, ${masCiMate[3]} sa na nás obrátiť!`;
+    Snažili sme sa vybrať ubytovanie pre ${masCiMate[1]} čo najpohodlnejšie podľa dostupnej kapacity Ranča, ale ak by boli nejaké otázky, ${masCiMate[3]} sa na nás obrátiť!`;
     document.getElementById("raňajkyInfo").innerHTML = `pokiaľ ${masCiMate[5]} záujem, ${masCiMate[4]} políčka nižšie najneskôr do <strong>31. 7. 2026</strong>! A klik na <strong>ULOŽ</strong>. Po tomto termíne sa už nebude ukladať objednávka.`;
     document.getElementById("VzhladUbytovania").innerHTML = `Ubytovanie je zaplatené a dá sa pozrieť tu: <a href="https://www.ranctelc.cz/${ubytovanieType}/" target="_blank">ranctelc</a>`;
+    document.getElementById("OcekavanyPrichod").innerHTML = `Prosím ${masCiMate[4]} očakávaný deň príchodu. Pre hladký check-in ${masCiMate[7]} približný <strong>čas</strong> príchodu Saške (+421 902 539 905) alebo Ondrovi (+420 606 355 038) do správy v deň príchodu.`;
+    document.getElementById("zaplatenieRanajok").innerHTML = `Ak ${masCiMate[5]} objednané raňajky, ${masCiMate[8]} prosím pomocou QR alebo odkazu nižšie a ${masCiMate[10]} do poznámky <strong>svoje meno</strong>. Ak sa nedá využiť tento spôsob platby, prosím ${masCiMate[9]} peniaze v deň príchodu`;
+
+    if (data.arrival_day) {
+      document.getElementById("maPrichod").style.display = "block";
+      document.getElementById("ZaznamenanyPrichod").innerHTML = `Zaznamenaný deň príchodu 🚗: <strong>${data.arrival_day}</strong> <br> Pre hladký check-in ${masCiMate[7]} približný <strong>čas</strong> príchodu Saške (+421 902 539 905) alebo Ondrovi (+420 606 355 038) do správy v deň príchodu. <br><br> Ak ${masCiMate[6]} zmeniť deň príchodu, klik na tlačítko nižšie.`;
+      document.getElementById("arrivalDayForm").style.display = "none";
+      document.getElementById("OcekavanyPrichod").style.display = "none";
+    }
   }
+
 
   await client
     .from("hostia")
@@ -145,6 +155,11 @@ function updateBreakfast() {
   }
 }
 
+function updateArrivalDay() {
+    document.getElementById("arrivalDayForm").style.display = "block";
+    document.getElementById("maPrichod").style.display = "none";
+}
+
 
 async function saveBreakfast() {
   if (new Date() > new Date("2026-07-31")) {
@@ -162,5 +177,46 @@ async function saveBreakfast() {
 
   if (!error) {
     alert("🥐 Raňajky uložené");
+  }
+}
+
+async function saveArrivalDay() {
+  const arrivalDay = document.getElementById("arrivalDay").value;
+  if (!arrivalDay) {
+    alert("Prosím vyber deň príchodu.");
+    return;
+  }
+
+  const {error} =
+    await client
+      .from("hostia")
+      .update({arrival_day:arrivalDay})
+      .eq("id",currentGuestId);
+  if (!error) {
+    alert("🚗 Deň príchodu uložený");
+  }
+}
+
+async function saveSong() {
+
+  const song = document.getElementById("pesnickaNaPrianie").value.trim();
+  if (!song) {
+    alert("Názov pesničky?? 🙂");
+    return;
+  }
+
+  const { error } =
+    await client
+      .from("hostia")
+      .update({song_request:song })
+      .eq(
+        "id",
+        currentGuestId
+      );
+
+  if (!error) {
+    alert(
+      "🎶 Pesnička uložená!"
+    );
   }
 }

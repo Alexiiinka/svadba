@@ -14,6 +14,16 @@
 </head>
 
 <body>
+
+  <img
+    src="images/Okraj3.png"
+    id="cornerTop"
+  />
+  <img
+    src="images/Okraj2.png"
+    id="cornerBottom"
+  />
+
   <div class="container">
     <img id="mainTitle" src="images/nadpis.png" alt="Nasa svadba"/>
     <!-- Toto je komentar <h2>Alexandra 💞 Ondřej</h2> -->
@@ -67,20 +77,52 @@
           Ubytovanie je k dispozícii od piatka 12:00 do nedele 10:30
           <ul class="vnurenyZoznam">
             <li class="vnurenyZoznamItem">
-              odporúčame príchod v piatok, pre užitie celého víkendu bez stresu zo sobotného cestovania. Nižšie sú naše tipy na jednoduché výlety v krásnom UNESCO mestečku Telč.
+              odporúčame príchod v piatok, pre užitie celého víkendu bez stresu zo sobotného cestovania
+            </li>
+            <li class="vnurenyZoznamItem">
+              naše tipy na jednoduché výlety v krásnom UNESCO mestečku Telč - zámecká zahrada/park, zámok, historické námestie
             </li>
           </ul>
         </li>
-        <li>
-          Check-in prebieha na recepcii Ranča Telč
-        </li>
         <li id="VzhladUbytovania">
         </li>
+        <li id="OcekavanyPrichod">
+        </li>
+      </ul>
+
+      <div style="display:none;" id="maPrichod" class="vyplneneFormulare">
+        <p id="ZaznamenanyPrichod"></p>
+        <button onclick="updateArrivalDay()">
+          Zmeniť deň príchodu
+        </button>
+      </div>
+      
+      <div id="arrivalDayForm">
+        <label for="arrivalDay">
+          🚗 Deň príchodu
+        </label><br>
+        <select id="arrivalDay">
+          <option value="">
+            Vyberte deň
+          </option>
+          <option value="Piatok">
+            Piatok
+          </option>
+          <option value="Sobota">
+            Sobota
+          </option>
+        </select>
+        <br>
+        <button onclick="saveArrivalDay()">
+          Uložiť deň príchodu
+        </button>
+      </div>
+      <ul>
         <li>
-          Je tu možnosť objednania <strong>raňajok</strong> za XXX kč/osobu (resp. XXX eur/osobu) 
+          Je tu možnosť objednania <strong>raňajok</strong> za 150 kč/osobu (resp. 6.2 eur/osobu).
           <ul class="vnurenyZoznam">
             <li class="vnurenyZoznamItem">
-              raňajky sa podávajú formou bufetu v sobotu a nedeľu od 8:00 do 10:00
+              raňajky sa podávajú formou švédskych stolov v sobotu a nedeľu od 8:00 do 10:00
             </li>
             <li class="vnurenyZoznamItem" id ="raňajkyInfo">
             </li>
@@ -88,7 +130,7 @@
         </li>
       </ul>
 
-      <div id ="maRanajky" style="display:none;">
+      <div id ="maRanajky" style="display:none;" class="vyplneneFormulare">
         <p id="objednaneRanajky"></p>
         <button onclick="updateBreakfast()">
           Zmeniť raňajky
@@ -125,8 +167,52 @@
           Ulož
         </button>
       </div>
-      
-    
+      <ul>
+        <li id="zaplatenieRanajok">
+        </li>
+        <ul class="vnurenyZoznam">
+          <li class="vnurenyZoznamItem">
+            Link na platbu na Revolut (kartou alebo bankovým prevodom) v EUR: 
+            <a href="http://revolut.me/alexan7um8" target="_blank">Zaplatiť raňajky</a>
+          </li>
+          <li class="vnurenyZoznamItem">
+            QR platba (domáci CZ účet - v CZK):
+            <br>
+            <img
+              src="images/qr-cz.jpg"
+              alt="QR platba"
+              class="qr-platba"
+            >
+          </li>
+          <li class="vnurenyZoznamItem">
+            QR platba SEPA (medzinárodný účet - v EUR):
+            <br>
+            <img
+              src="images/qr-sepa.jpg"
+              alt="QR platba"
+              class="qr-platba"
+            >
+          </li>
+        </ul>
+      </ul>
+    </div>
+    <div class="important-info">
+      <h4>Pesnička na prianie 🎶 </h4>
+      <p>Ak bude super, určite ju pripravíme na zahratie!</p>
+      <input
+        type="text"
+        id="pesnickaNaPrianie"
+        placeholder="Zadaj názov a interpreta"
+      />
+      <button onclick="saveSong()">
+        Uložiť pesničku
+      </button>
+    </div>
+
+    <div class="important-info">
+      <h5>Ostatné informácie</h5>
+      <p>Keďže je veľa podvodných stránok pre dialičnú známku, odporúčame oficiálnu CZ stránku edalnice!:</p>
+      <a href="https://edalnice.cz/#/validation" target="_blank">Kúpiť diaľničnú známku edalnice</a>
     </div>
 
 

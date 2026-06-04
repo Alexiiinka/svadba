@@ -43,6 +43,30 @@ input {
   border-color: #665d3d;
 }
 
+select {
+  width: 80%;
+  max-width: 400px;
+
+  display: block;
+  margin: 0 auto;
+
+  padding: 12px 16px;
+
+  border-radius: 10px;
+  border: 0.5px solid #665d3d;
+
+  font-family:
+    "Cinzel",
+    serif;
+
+  font-size:
+    clamp(
+      1rem,
+      2vw,
+      1.2rem
+    );
+}
+
 button {
   font-family: "cinzel", serif;
   font-size: clamp(1rem, 1vw, 2.5rem);
@@ -155,6 +179,44 @@ label {
   margin: 0 auto 5px auto;
 }
 
+#cornerTop {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  width: clamp(
+    80px,
+    12vw,
+    180px
+  );
+
+  height: auto;
+
+  z-index: 1000;
+
+  pointer-events: none;
+}
+
+#cornerBottom {
+  position: fixed;
+
+  left: 0;
+  bottom: 0;
+
+  width: clamp(
+    80px,
+    12vw,
+    180px
+  );
+
+  height: auto;
+
+  z-index: 1000;
+
+  pointer-events: none;
+}
+
 p.charm-text {
   font-family: "charm", light, serif;
   text-align: left;
@@ -162,9 +224,7 @@ p.charm-text {
 }
 
 
-
-
-#maRanajky{
+.vyplneneFormulare {
   background-color: #fff4df74;
   padding: 3%;
   margin-left: 3%;
@@ -180,6 +240,14 @@ p.charm-text {
 
   box-shadow:
     0 8px 24px rgba(0,0,0,0.08);
+}
+
+.qr-platba {
+  width: min(100%, 250px);
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -198,6 +266,8 @@ p.charm-text {
     width: 100%;
     box-sizing: border-box;
   }
+
+  
 
   h2#welcome {
     width: calc(100% + 40px);
