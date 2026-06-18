@@ -11,6 +11,7 @@ const client = supabase.createClient(
 
 console.log("script loaded");
 let currentGuestId = null;
+let masCiMate = [];
 
 async function unlockInvite() {
 
@@ -94,7 +95,7 @@ async function unlockInvite() {
       ubytovanieType = "chatky";
   }
 
-  let masCiMate = [];
+  
   if (data.seats === 1) {masCiMate[0] = "Máš"; masCiMate[1] = "Teba"; masCiMate[2] = "si"; masCiMate[3] = "neváhaj"; masCiMate[4] = "vyplň"; masCiMate[5] = "máš"; masCiMate[6] = "chceš"; masCiMate[7] = "napíš"; masCiMate[8] = "zaplať"; masCiMate[9] = "prines"; masCiMate[10] = "daj"; }
   else {masCiMate[0] = "Máte"; masCiMate[1] = "Vás"; masCiMate[2] = "ste"; masCiMate[3] = "neváhejte"; masCiMate[4] = "vyplňte"; masCiMate[5] = "máte"; masCiMate[6] = "chcete"; masCiMate[7] = "napíšte"; masCiMate[8] = "zaplaťte"; masCiMate[9] = "prineste"; masCiMate[10] = "dajte"; }
 
@@ -119,7 +120,7 @@ async function unlockInvite() {
     document.getElementById("raňajkyInfo").innerHTML = `pokiaľ ${masCiMate[5]} záujem, ${masCiMate[4]} políčka nižšie najneskôr do <strong>31. 7. 2026</strong>! A klik na <strong>ULOŽ</strong>. Po tomto termíne sa už nebude ukladať objednávka.`;
     document.getElementById("VzhladUbytovania").innerHTML = `Ubytovanie je zaplatené a dá sa pozrieť tu: <a href="https://www.ranctelc.cz/${ubytovanieType}/" target="_blank">ranctelc</a>`;
     document.getElementById("OcekavanyPrichod").innerHTML = `Prosím ${masCiMate[4]} očakávaný deň príchodu. Pre hladký check-in ${masCiMate[7]} približný <strong>čas</strong> príchodu Saške (+421 902 539 905) alebo Ondrovi (+420 606 355 038) do správy v deň príchodu.`;
-    document.getElementById("zaplatenieRanajok").innerHTML = `Ak ${masCiMate[5]} objednané raňajky, ${masCiMate[8]} prosím pomocou QR alebo odkazu nižšie a ${masCiMate[10]} do poznámky <strong>svoje meno</strong>. Ak sa nedá využiť tento spôsob platby, prosím ${masCiMate[9]} peniaze v deň príchodu`;
+    document.getElementById("zaplatenieRanajok").innerHTML = `Ak ${masCiMate[5]} objednané raňajky, ${masCiMate[8]} prosím pomocou QR alebo odkazu nižšie a ${masCiMate[10]} do poznámky <strong>svoje meno</strong>. Ak sa nedá využiť tento spôsob platby, prosím ${masCiMate[9]} peniaze v deň príchodu.<br><br>Pre automatické vypočítanie celkovej sumy nezabudni ULOŽIŤ objednávku. Suma za raňajky by mala byť <strong> ${data.breakfast_sat_count * 6.2 + data.breakfast_sun_count * 6.2} € </strong> (6.2€ za každý kus) respektíve <strong> ${data.breakfast_sat_count * 150 + data.breakfast_sun_count * 150} Kč </strong>.`;
 
     if (data.arrival_day) {
       document.getElementById("maPrichod").style.display = "block";
@@ -177,7 +178,9 @@ async function saveBreakfast() {
 
   if (!error) {
     alert("🥐 Raňajky uložené");
+    document.getElementById("zaplatenieRanajok").innerHTML = `Ak ${masCiMate[5]} objednané raňajky, ${masCiMate[8]} prosím pomocou QR alebo odkazu nižšie a ${masCiMate[10]} do poznámky <strong>svoje meno</strong>. Ak sa nedá využiť tento spôsob platby, prosím ${masCiMate[9]} peniaze v deň príchodu.<br><br> Pre automatické vypočítanie celkovej sumy <strong> nezabudni ULOŽIŤ objednávku</strong>. Suma za raňajky by mala byť ${satCount * 6.2 + sunCount * 6.2} € (6.2€ za každý kus) respektíve ${satCount * 150 + sunCount * 150} Kč.`;
   }
+
 }
 
 async function saveArrivalDay() {
